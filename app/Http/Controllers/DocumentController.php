@@ -19,7 +19,24 @@ class DocumentController extends Controller
     //
     public function index(){
         $documents = Document::all();
-        return view('dokumen.daftar', ["data"=>$documents]);
+        return view('dokumen.daftar', ["data"=>$documents, "order"=>[
+            "route" => "dokumen.delete",
+            "button" => [
+                "text" => "Hapus",
+                "className" => "btn-danger"
+            ]
+        ]]);
+    }
+
+    public function downloads(){
+        $documents = Document::all();
+        return view('dokumen.daftar', ["data"=>$documents, "order"=>[
+            "route" => "dokumen.download",
+            "button" => [
+                "text" => "Unduh",
+                "className" => "btn-primary"
+            ]
+        ]]);
     }
 
     public function create($slug){

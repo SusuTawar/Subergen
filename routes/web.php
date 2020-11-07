@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('home');
 });
 
 Auth::routes();
@@ -24,8 +24,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['prefix' => 'dokumen', 'as' => 'dokumen.'], static function () {
     Route::get('/', [DocumentController::class, 'index'])->name('index');
-    Route::get('/unggah', [DocumentController::class, 'upload']);
+    Route::get('/unggah', [DocumentController::class, 'upload'])->name('upload');
     Route::post('/unggah', [DocumentController::class, 'store']);
-    Route::get('/unduh', [DocumentController::class, 'index'])->name('delete');
+    Route::get('/hapus', [DocumentController::class, 'index'])->name('delete');
+    Route::get('/unduh', [DocumentController::class, 'downloads'])->name('downloads');
     Route::get('/unduh/{slug}', [DocumentController::class, 'create'])->name('download');
 });

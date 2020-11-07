@@ -37,8 +37,7 @@
                         <td>{{ $dokumen->title }}</td>
                         <td>{{ $dokumen->category }}</td>
                         <td class="btn-group d-flex space-between">
-                            <a href="{{ route('dokumen.download',[$dokumen->slug]) }}" class="btn btn-primary">Unduh</a>
-                            <a href="{{ route('dokumen.delete',[$dokumen->slug]) }}" class="btn btn-danger">Hapus</a>
+                            <a href="{{ route($order["route"],[$dokumen->slug]) }}" class="btn {{$order["button"]["className"]}}">{{$order["button"]["text"]}}</a>
                         </td>
                     <tr>
                 @endforeach

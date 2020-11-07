@@ -233,24 +233,34 @@ return [
     'menu' => [
         [
             'text' => 'Home',
-            'url'  => 'admin/settings',
+            'route'  => 'home',
             'icon' => 'fas fa-fw fa-home',
         ],
         [
             'text' => 'Keluar',
-            'url'  => 'admin/settings',
+            'url'  => '#',
             'icon' => 'fas fa-fw fa-sign-out-alt',
         ],
-        ['header' => 'Dokumen'],
         [
-            'text' => 'Template Dokumen Baru',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-file-medical',
-        ],
-        [
-            'text' => 'Unduh Dokumen',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-file-download',
+            'text' => 'Dokumen',
+            'icon' => 'fas fa-fw fa-folder-open',
+            'submenu' => [
+                [
+                    'text' => 'Kelola',
+                    'icon' => 'fas fa-fw fa-file-alt',
+                    'route' => 'dokumen.index'
+                ],
+                [
+                    'text' => 'Unggah',
+                    'icon' => 'fas fa-fw fa-file-upload',
+                    'route'  => 'dokumen.upload',
+                ],
+                [
+                    'text' => 'Unduh',
+                    'icon' => 'fas fa-fw fa-file-download',
+                    'route'  => 'dokumen.downloads',
+                ],
+            ],
         ],
     ],
 

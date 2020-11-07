@@ -1,5 +1,5 @@
-*
-document
+temp
+document/*
 !document/69420.docx
 !public/
 !.gitignore
