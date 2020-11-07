@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -120,9 +121,12 @@ class DocumentController extends Controller
         foreach ($this->getReplaceable($document->id) as $replaceable) {
             $template->setValue($replaceable, array_key_exists($replaceable, $post) ? $post[$replaceable] : '');
         }
-        $filename = Storage::path("document/_temp_".Str::random(8).Carbon::now()->micro.".docx");
+        Log::debug($post);
+        $template->setValues($post);
+        $name = "document/_temp_".Str::random(8).Carbon::now()->micro.".docx";
+        $filename = Storage::path("public/$name");
         $template->saveAs($filename);
-        return response()->download(storage_path()."document/_temp_".Str::random(8).Carbon::now()->micro.".docx", $document->title.".docx")->deleteFileAfterSend(true);
+        return response()->download("storage/$name", $document->title)->deleteFileAfterSend(true);
     }
 
     //

@@ -18,7 +18,7 @@
             @foreach ($requireable as $require)
                 <div class="form-group">
                     <label for="{{$require["slug"]}}">{{$require["display"]}}</label>
-                    <input type="text" class="form-control" id="{{$require["slug"]}}" />
+                    <input type="text" class="form-control" name="{{$require["slug"]}}" id="{{$require["slug"]}}" />
                 </div>
             @endforeach
         </div>
